@@ -20,9 +20,33 @@ namespace passgen
     /// </summary>
     public partial class MainWindow : Window
     {
+
+        private PassGeneration gne = new PassGeneration();
+
+
+
+
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void ToggleButton_Click(object sender, RoutedEventArgs e)
+        {
+            if((bool)ToggleShowGenerated.IsChecked)
+            {
+                PassOutput.Visibility = Visibility.Hidden;
+                PassOutputBox.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                PassOutput.Visibility = Visibility.Visible;
+                PassOutputBox.Visibility = Visibility.Hidden;
+
+
+                gne.Length = 39;
+                
+            }
         }
     }
 }

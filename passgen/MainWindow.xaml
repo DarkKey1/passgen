@@ -7,6 +7,28 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="720" Width="900">
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="60"/>
+            <ColumnDefinition Width="10"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="240"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="10"/>
+        </Grid.RowDefinitions>
+
+
+
+        <TextBlock Grid.Column="1" Grid.Row="1" Text="Pass Gen" FontSize="48" TextAlignment="Center" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         
+        <PasswordBox x:Name="PassOutput" FontSize="48" Grid.Row="2" Grid.Column="1" Password="tesst" Visibility="Visible"/>
+        <TextBox x:Name="PassOutputBox" Grid.Row="2" Grid.Column="1" Visibility="Hidden" Text="tesst" FontSize="48"></TextBox>
+        
+        
+        <ToggleButton x:Name="ToggleShowGenerated" FontSize="72" Grid.Row="2" Grid.Column="2" Content="S" Click="ToggleButton_Click"/>
     </Grid>
 </Window>
