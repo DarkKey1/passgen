@@ -9,18 +9,31 @@ namespace passgen
     public class PassGeneration
     {
         int length = 8;
-        const string lowercaseChars = "";
-        const string uppercaseChars = "";
-        const string numbers = "0123456789";
-        const string basicSpecialChars = "";
-        const string extendedSpecialChars = "";
+        const string lowercaseChars = "abcdefghijklmnopqrstuvwxyz"; //26
+        const string uppercaseChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"; //26
+        const string numbers = "0123456789"; //10
+        const string basicSpecialChars = "!@#$%^&*"; //8
+        const string extendedSpecialChars = "~`_-+={}[]|\\:;<>,.?/";//20
         bool safe8 = false;
         bool safe16 = false;
 
+        RandomGenerator rng = new RandomGenerator();
+
         public string Generate()
         {
+            string passOut = "";
 
-            return "yyyggyg";
+            for(int i=0; i < length;i++)
+            {
+                passOut = passOut + i;
+            }
+
+
+
+
+
+
+            return passOut;
         }
 
         public int Length

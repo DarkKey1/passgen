@@ -5,30 +5,121 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:passgen"
         mc:Ignorable="d"
-        Title="MainWindow" Height="720" Width="900">
+        Title="MainWindow" Height="720" Width="1000">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="10"/>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="60"/>
             <ColumnDefinition Width="10"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="10"/>
             <RowDefinition Height="60"/>
-            <RowDefinition Height="240"/>
+            <RowDefinition Height="190"/>
+            <RowDefinition Height="80"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="10"/>
         </Grid.RowDefinitions>
 
 
+        <Grid Grid.Row="2" Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="60"/>
+            </Grid.ColumnDefinitions>
+
+
+
+            <TextBox x:Name="PassOutputBox" Visibility="Visible" Text="tesst" FontSize="36" TextWrapping="Wrap" TextAlignment="Center"/>
+
+
+            <ToggleButton x:Name="ToggleShowGenerated" FontSize="36" Grid.Column="1" Content="👁" Click="ToggleButton_Click" Margin="4,0,0,0"/>
+
+
+
+        </Grid>
+
 
         <TextBlock Grid.Column="1" Grid.Row="1" Text="Pass Gen" FontSize="48" TextAlignment="Center" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        
-        <PasswordBox x:Name="PassOutput" FontSize="48" Grid.Row="2" Grid.Column="1" Password="tesst" Visibility="Visible"/>
-        <TextBox x:Name="PassOutputBox" Grid.Row="2" Grid.Column="1" Visibility="Hidden" Text="tesst" FontSize="48"></TextBox>
+
         
         
-        <ToggleButton x:Name="ToggleShowGenerated" FontSize="72" Grid.Row="2" Grid.Column="2" Content="S" Click="ToggleButton_Click"/>
+        <Grid Grid.Row="3" Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="60"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="10"/>
+                <ColumnDefinition Width="200"/>
+            </Grid.ColumnDefinitions>
+
+
+            
+
+
+            <Button x:Name="GenerateButton" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center" Content="Generate" FontSize="48" Click="Button_Click" Grid.Column="3"/>
+            <TextBox x:Name="LengthBox" FontSize="36" Text="8" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" TextAlignment="Center" Margin="0,8,2,8" TextChanged="LengthBox_TextChanged" PreviewTextInput="LengthBox_PreviewTextInput"></TextBox>
+            <Slider x:Name="LengthSlider" FontSize="36" Minimum="1" Maximum="64" Grid.Column="1" Value="8" HorizontalAlignment="Stretch" VerticalAlignment="Center" ValueChanged="Slider_ValueChanged" IsSnapToTickEnabled="True" SmallChange="1" TickPlacement="Both" TickFrequency="1" RenderTransformOrigin="0.5,0.5">
+                <Slider.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform ScaleY="3"/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Slider.RenderTransform>
+            </Slider>
+        </Grid>
+
+        <Grid Grid.Column="1" Grid.Row="4">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="10"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="10"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+
+
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    
+                </Grid.ColumnDefinitions>
+
+                <Button Margin="8,0,8,0" FontSize="36" Content="Password"></Button>
+                <Button Grid.Column="1" Margin="8,0,8,0" Content="Number" FontSize="36"></Button>
+                <Button Grid.Column="2" Margin="8,0,8,0" Content="Hex" FontSize="36"></Button>
+                <Button Grid.Column="3" Margin="8,0,8,0" Content="Bin" FontSize="36"></Button>
+                
+            </Grid>
+
+            <Grid Grid.Row="3">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                
+                
+                
+                
+            </Grid>
+            
+
+        </Grid>
+    
     </Grid>
 </Window>
