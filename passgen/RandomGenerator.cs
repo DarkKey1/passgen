@@ -34,13 +34,13 @@ namespace passgen
             return (int)(minValue + (ui % diff));
         }
 
-        private uint GetRandomUInt()
+        public uint GetRandomUInt()
         {
             var randomBytes = GenerateRandomBytes(sizeof(uint));
             return BitConverter.ToUInt32(randomBytes, 0);
         }
 
-        private byte[] GenerateRandomBytes(int bytesNumber)
+        public byte[] GenerateRandomBytes(int bytesNumber)
         {
             byte[] buffer = new byte[bytesNumber];
             csp.GetBytes(buffer);

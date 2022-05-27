@@ -14,6 +14,9 @@
                 <Separator />
                 <MenuItem Header="_Close" Click="MenuItem_CloseClick"/>
             </MenuItem>
+            <MenuItem Header="_Info">
+                <MenuItem Header="_Author" />
+            </MenuItem>
         </Menu>
         
         
@@ -43,7 +46,7 @@
 
 
 
-                <TextBox x:Name="PassOutputBox" Visibility="Visible" Text="tesst" FontSize="36" TextWrapping="Wrap" TextAlignment="Center"/>
+                <TextBox x:Name="PassOutputBox" Visibility="Visible" Text="tesst" FontSize="36" TextWrapping="Wrap" TextAlignment="Center" IsReadOnly="True" PreviewMouseDoubleClick="PassOutputBox_PreviewMouseDoubleClick"/>
 
 
                 <ToggleButton x:Name="ToggleShowGenerated" FontSize="36" Grid.Column="1" Content="👁" Click="ToggleButton_Click" Margin="4,0,0,0"/>
@@ -54,7 +57,7 @@
 
 
             <TextBlock Grid.Column="1" Grid.Row="1" Text="Pass Gen" FontSize="48" TextAlignment="Center" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-
+            <TextBlock Grid.Row="1" Grid.Column="1" Text="Double click to copy password" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="500,0,0,10" FontSize="18" FontWeight="Bold"></TextBlock>
 
 
             <Grid Grid.Row="3" Grid.Column="1">
@@ -102,10 +105,10 @@
 
                     </Grid.ColumnDefinitions>
 
-                    <Button Margin="8,0,8,0" FontSize="36" Content="Password"></Button>
-                    <Button Grid.Column="1" Margin="8,0,8,0" Content="Number" FontSize="36"></Button>
-                    <Button Grid.Column="2" Margin="8,0,8,0" Content="Hex" FontSize="36"></Button>
-                    <Button Grid.Column="3" Margin="8,0,8,0" Content="Bin" FontSize="36"></Button>
+                    <Button Margin="8,0,8,0" FontSize="36" Content="Password" IsEnabled="False"></Button>
+                    <Button Grid.Column="1" Margin="8,0,8,0" Content="Number" FontSize="36" IsEnabled="False"></Button>
+                    <Button Grid.Column="2" Margin="8,0,8,0" Content="Hex" FontSize="36" IsEnabled="False"></Button>
+                    <Button Grid.Column="3" Margin="8,0,8,0" Content="Bin" FontSize="36" IsEnabled="False"></Button>
 
                 </Grid>
 
@@ -133,7 +136,7 @@
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
 
-                        <CheckBox HorizontalAlignment="Center" VerticalAlignment="Center"></CheckBox>
+                        <CheckBox x:Name="LowercaseLettersCheckBox" HorizontalAlignment="Center" VerticalAlignment="Center" Click="updateFlags"></CheckBox>
                         <Label Content="Lowercase Letters" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="18"></Label>
                     </Grid>
                     <Grid Grid.Row="1">
@@ -142,7 +145,7 @@
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
 
-                        <CheckBox HorizontalAlignment="Center" VerticalAlignment="Center"></CheckBox>
+                        <CheckBox x:Name="UppercaseLettersCheckBox" HorizontalAlignment="Center" VerticalAlignment="Center" Click="updateFlags"></CheckBox>
                         <Label Content="Uppercase Letters" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="18"></Label>
                     </Grid>
                     <Grid Grid.Row="2">
@@ -151,7 +154,7 @@
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
 
-                        <CheckBox HorizontalAlignment="Center" VerticalAlignment="Center"></CheckBox>
+                        <CheckBox x:Name="NumbersCheckBox" HorizontalAlignment="Center" VerticalAlignment="Center" Click="updateFlags"></CheckBox>
                         <Label Content="Numbers" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="18"></Label>
                     </Grid>
                     <Grid Grid.Row="3">
@@ -160,7 +163,7 @@
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
 
-                        <CheckBox HorizontalAlignment="Center" VerticalAlignment="Center"></CheckBox>
+                        <CheckBox x:Name="BasicSpecialCharsCheckBox" HorizontalAlignment="Center" VerticalAlignment="Center" Click="updateFlags"></CheckBox>
                         <Label Content="Basic Special Chars" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="18"></Label>
                     </Grid>
                     <Grid Grid.Row="4">
@@ -169,7 +172,7 @@
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
 
-                        <CheckBox HorizontalAlignment="Center" VerticalAlignment="Center"></CheckBox>
+                        <CheckBox x:Name="ExtendedSpecialCharsCheckBox" HorizontalAlignment="Center" VerticalAlignment="Center" Click="updateFlags"></CheckBox>
                         <Label Content="Extended Special Chars" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="18"></Label>
                     </Grid>
                     <Grid Grid.Column="1">
@@ -178,7 +181,7 @@
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
 
-                        <CheckBox HorizontalAlignment="Center" VerticalAlignment="Center"></CheckBox>
+                        <CheckBox x:Name="BasicSafetyCheckBox" HorizontalAlignment="Center" VerticalAlignment="Center" Click="BasicSafetyCheckBox_Click"></CheckBox>
                         <Label Content="Basic Safety" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="18"></Label>
                     </Grid>
                     <Grid Grid.Column="1" Grid.Row="1">
@@ -187,8 +190,20 @@
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
 
-                        <CheckBox HorizontalAlignment="Center" VerticalAlignment="Center"></CheckBox>
-                        <Label Content="Extended Safety" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="18"></Label>
+                        <CheckBox x:Name="ExtendedSafetyCheckBox" HorizontalAlignment="Center" VerticalAlignment="Center" Click="ExtendedSafetyCheckBox_Click"></CheckBox>
+                        <Label Content="Extended Safety =====" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="18"></Label>
+                    </Grid>
+                    <Grid Grid.Column="1" Grid.Row="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="30"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <CheckBox x:Name="LessSpecialCharsCheckBox" HorizontalAlignment="Center" VerticalAlignment="Center" Click="updateFlags"></CheckBox>
+                        <Label Content="Less Special Chars" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="18"></Label>
+                    </Grid>
+                    <Grid Grid.Column="2" Grid.Row="1">
+                        <Label Content="Strong Password" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="18"></Label>
                     </Grid>
 
 
