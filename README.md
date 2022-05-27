@@ -17,8 +17,8 @@ It is random project for few days, i done password generator like this before an
 
 # Planned / TODO
 
-- [] Generating numbers in selected range
-- [] Generating Hex string
-- [] Generating Binary string
-- [] Exporting single string to file
-- [] Exporting multiple strings to file
+- [ ] Generating numbers in selected range
+- [ ] Generating Hex string
+- [ ] Generating Binary string
+- [ ] Exporting single string to file
+- [ ] Exporting multiple strings to file
